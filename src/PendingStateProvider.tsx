@@ -16,9 +16,7 @@ export const PendingStateProvider = ({
     value,
     children,
 }: PendingStateProviderProps) => {
-    let defaultValueRef = useRef<Map<string, Store<PendingState>> | null>(
-        null,
-    );
+    let defaultValueRef = useRef<Map<string, Store<PendingState>> | null>(null);
 
     let resolvedValue = useMemo(() => {
         if (value instanceof Map) return value;

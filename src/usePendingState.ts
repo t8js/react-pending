@@ -1,4 +1,4 @@
-import {type SetStoreState, Store, isStore, useStore} from '@t8/react-store';
+import {isStore, type SetStoreState, Store, useStore} from '@t8/react-store';
 import {useCallback, useContext, useMemo, useRef, useState} from 'react';
 import type {PendingState} from './PendingState';
 import {PendingStateContext} from './PendingStateContext';
