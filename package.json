@@ -25,10 +25,12 @@
     "react"
   ],
   "peerDependencies": {
-    "@t8/react-store": "^1.0.2",
     "react": ">=16.8"
   },
   "devDependencies": {
     "@types/react": "^19.1.10"
+  },
+  "dependencies": {
+    "@t8/react-store": "^1.0.2"
   }
 }
