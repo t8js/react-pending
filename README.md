@@ -1,4 +1,4 @@
-[![npm](https://flat.badgen.net/npm/v/@t8/react-pending?labelColor=345&color=46e)](https://www.npmjs.com/package/@t8/react-pending) [![Lightweight](https://flat.badgen.net/bundlephobia/minzip/@t8/react-pending/?labelColor=345&color=46e)](https://bundlephobia.com/package/@t8/react-pending) ![TypeScript ✓](https://flat.badgen.net/badge/TypeScript/✓?labelColor=345&color=345) ![CSR ✓](https://flat.badgen.net/badge/CSR/✓?labelColor=345&color=345) ![SSR ✓](https://flat.badgen.net/badge/SSR/✓?labelColor=345&color=345)
+[![npm](https://flat.badgen.net/npm/v/@t8/react-pending?labelColor=345&color=46e)](https://www.npmjs.com/package/@t8/react-pending) [![Lightweight](https://flat.badgen.net/bundlephobia/minzip/@t8/react-pending/?label=minzip&labelColor=345&color=46e)](https://bundlephobia.com/package/@t8/react-pending) ![TypeScript ✓](https://flat.badgen.net/badge/TypeScript/✓?labelColor=345&color=345) ![CSR ✓](https://flat.badgen.net/badge/CSR/✓?labelColor=345&color=345) ![SSR ✓](https://flat.badgen.net/badge/SSR/✓?labelColor=345&color=345)
 
 # @t8/react-pending
 
