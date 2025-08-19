@@ -19,6 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/t8dash/react-pending.git"
   },
+  "homepage": "https://t8dash.github.io/react-pending",
   "keywords": [
     "async actions",
     "pending state",
