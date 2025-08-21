@@ -17,9 +17,9 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/t8dash/react-pending.git"
+    "url": "git+https://github.com/t8js/react-pending.git"
   },
-  "homepage": "https://t8dash.github.io/react-pending",
+  "homepage": "https://t8js.github.io/react-pending",
   "keywords": [
     "async actions",
     "pending state",
