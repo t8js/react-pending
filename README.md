@@ -53,7 +53,7 @@ Objective: Track the pending state of the async `fetchItems()` action to tell th
   };
 ```
 
-[Live demo](https://codesandbox.io/p/sandbox/9rrsg9?file=%2Fsrc%2FItemList.js)
+[Live demo](https://codesandbox.io/p/sandbox/rrr9cl?file=%2Fsrc%2FItemList.tsx)
 
 🔹 If the action's state is only used within a single component, it can be used locally by omitting the custom string key parameter of the `usePendingState()` hook.
 
