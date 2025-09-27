@@ -34,6 +34,6 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "@t8/react-store": "^1.0.12"
+    "@t8/react-store": "^1.0.15"
   }
 }
