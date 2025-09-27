@@ -1,0 +1,23 @@
+ul {
+  --size: 0.65em;
+  --color: silver;
+
+  list-style: none;
+  padding: 0 1em;
+}
+li {
+  margin: 0.25em 0;
+}
+li .badge {
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  background: var(--color);
+  border-radius: 50%;
+  margin-inline-end: 0.5em;
+}
+.error {
+  color: crimson;
+  background: mistyrose;
+  padding: 0.1em 1em;
+}
