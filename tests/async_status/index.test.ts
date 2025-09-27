@@ -15,7 +15,9 @@ class Playground {
     await expect(this.page.locator("li", { hasText: "Item #1" })).toBeVisible();
   }
   async showsStatus(value: string) {
-    await expect(this.page.locator("p", { hasText: `Status: ${value}` })).toBeVisible();
+    await expect(
+      this.page.locator("p", { hasText: `Status: ${value}` }),
+    ).toBeVisible();
   }
 }
 
