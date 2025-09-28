@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { type CSSProperties, useCallback, useEffect, useState } from "react";
 import { usePendingState } from "../../..";
 import { fetchItems, type Item } from "./fetchItems";
 
@@ -29,7 +29,7 @@ export const ItemList = () => {
   return (
     <ul>
       {items.map(({ id, text, color }) => (
-        <li key={id} style={{ "--color": color } as React.CSSProperties}>
+        <li key={id} style={{ "--color": color } as CSSProperties}>
           <span className="badge" />
           {text}
         </li>
