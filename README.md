@@ -8,46 +8,38 @@ No need to rearrange the app's shared state setup and to rewrite the async actio
 
 Installation: `npm i @t8/react-pending`
 
-## Usage
+## Example
 
 Objective: Track the pending state of the async `fetchItems()` action to tell the user whether the UI is busy or encountered an error (preferably without rewriting the action and the app's state management).
 
 ```diff
 + import { usePendingState } from "@t8/react-pending";
 
-  const ItemList = () => {
+  export const ItemList = () => {
     const [items, setItems] = useState([]);
-    // the custom string key parameter tags the action's state so
-    // that another component can access this state by the same tag
 +   const [state, withState] = usePendingState("fetch-items");
 
     useEffect(() => {
-      // wrapping fetchItems() to track the async action's state
 -     fetchItems().then(setItems);
 +     withState(fetchItems()).then(setItems);
     }, [fetchItems, withState]);
 
-+   if (!state.complete)
-+     return <p>Loading...</p>;
-
-+   if (state.error)
-+     return <p>An error occurred</p>;
++   if (!state.complete) return <p>Loading...</p>;
++   if (state.error) return <p>An error occurred</p>;
 
     return <ul>{items.map(/* ... */)}</ul>;
   };
+```
 
-  const Status = () => {
-    // reading the "fetch-items" state updated in ItemList
+```diff
++ import { usePendingState } from "@t8/react-pending";
+
+  export const Status = () => {
 +   const [state] = usePendingState("fetch-items");
 
-    if (!state.initialized)
-      return "Initial";
-
-    if (!state.complete)
-      return "Busy";
-
-    if (state.error)
-      return "Error";
+    if (!state.initialized) return "";
+    if (!state.complete) return "Busy";
+    if (state.error) return "Error";
 
     return "OK";
   };
@@ -55,37 +47,45 @@ Objective: Track the pending state of the async `fetchItems()` action to tell th
 
 [Live demo](https://codesandbox.io/p/sandbox/rrr9cl?file=%2Fsrc%2FItemList.tsx)
 
-🔹 If the action's state is only used within a single component, it can be used locally by omitting the custom string key parameter of the `usePendingState()` hook.
+🔹 In this example, the action's value (the `items` array) is stored in the component's local state, but it can be stored in any app state of the developer's choice.
+
+## Shared and local pending state
+
+Omit the custom string key parameter of `usePendingState()` to scope the pending state locally within a single component:
 
 ```diff
-- const [state, withState] = usePendingState("fetch-items");
-+ const [state, withState] = usePendingState();
+- const [state, withState] = usePendingState("fetch-items"); // shared
++ const [state, withState] = usePendingState(); // local
 ```
 
-🔹 In the example above, the action's value (the `items` array) is stored in the component's local state, but it can certainly live in the app's shared state of the developer's choice instead.
-
-🔹 Silently tracking the action's pending state, e.g. with background or optimistic updates (preventing `state.complete` from switching to `false` in the pending state):
+## Silent tracking of background and optimistic updates
 
 ```diff
 - withState(fetchItems())
 + withState(fetchItems(), { silent: true })
 ```
 
-🔹 Revealing the action's pending state after a delay (e.g. to avoid flashing a process indicator when the action is likely to complete by the end of the delay):
+🔹 This option prevents `state.complete` from switching to `false` in the pending state.
+
+## Delayed pending state
 
 ```diff
 - withState(fetchItems())
 + withState(fetchItems(), { delay: 500 })
 ```
 
-🔹 Allowing the action's Promise value to reject explicitly (e.g. in order to provide the action with a custom rejection handler) along with exposing `state.error` that goes by default:
+🔹 Use case: avoiding flashing a process indicator when the action is likely to complete by the end of a short delay.
+
+## Custom rejection handler
 
 ```diff
 - withState(fetchItems())
 + withState(fetchItems(), { throws: true }).catch(handleError)
 ```
 
-🔹 Providing an isolated instance of initial shared action state, e.g. for tests or SSR (it can be unnecessary for client-side rendering where the default context value is sufficient, but it can also be used to separate action states of larger self-contained portions of a web app):
+🔹 This option allows the async action to reject explicitly, along with exposing `state.error` that goes by default.
+
+## Providing blank initial pending state
 
 ```diff
 + import { PendingStateProvider } from "@t8/react-pending";
@@ -96,7 +96,9 @@ Objective: Track the pending state of the async `fetchItems()` action to tell th
 + </PendingStateProvider>
 ```
 
-🔹 Setting a custom initial action state (which is fully optional):
+🔹 `<PendingStateProvider>` creates an isolated instance of initial shared action state. Prime use cases: tests, SSR. It isn't required with client-side rendering, but it can be used to separate action states of larger self-contained portions of a web app.
+
+## Providing custom initial pending state
 
 ```diff
 + const initialState = {
@@ -109,4 +111,6 @@ Objective: Track the pending state of the async `fetchItems()` action to tell th
   </PendingStateProvider>
 ```
 
-With an explicit value or without, the `<PendingStateProvider>`'s nested components will only respond to updates in the particular action states they subscribed to by means of `usePendingState("action-key")`.
+🔹 While fully optional, this setup allows to override the initial state received from `usePendingState(stateKey)`.
+
+🔹 With an explicit value or without, the `<PendingStateProvider>`'s nested components will only respond to updates in the particular action states they subscribed to by means of `usePendingState(stateKey)`.
