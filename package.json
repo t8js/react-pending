@@ -31,8 +31,8 @@
     "react": ">=16.8"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.1",
-    "@t8/serve": "^0.1.29",
+    "@playwright/test": "^1.56.0",
+    "@t8/serve": "^0.1.30",
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.9",
@@ -40,6 +40,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@t8/react-store": "^1.0.23"
+    "@t8/react-store": "^1.0.27"
   }
 }
