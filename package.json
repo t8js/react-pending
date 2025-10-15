@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "author": "axtk",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/t8js/react-pending.git"
