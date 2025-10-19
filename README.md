@@ -4,20 +4,31 @@
 
 *Concise async action state tracking for React apps*
 
-No need to rearrange the app's shared state setup and to rewrite the async actions.
+- Shared or local pending state tracking
+- Without rewrites in the app's shared state or async actions' internals
+- With a concise API
+
+```diff
++ let [state, withState] = usePendingState("fetch-items");
+
+- fetchItems().then(setItems);
++ withState(fetchItems()).then(setItems);
+
++ if (!state.complete) return <p>Loading...</p>;
+```
 
 Installation: `npm i @t8/react-pending`
 
-## Example
+## Shared pending state
 
-Objective: Track the pending state of the async `fetchItems()` action to tell the user whether the UI is busy or encountered an error (preferably without rewriting the action and the app's state management).
+Objective: Track the pending state of the asynchronous action `fetchItems()` to tell the user whether the UI is busy or encountered an error (preferably without rewriting the action and the app's state management). In our setup, there are two components rendering their content with regard to the current state of `fetchItems()`.
 
 ```diff
 + import { usePendingState } from "@t8/react-pending";
 
-  export const ItemList = () => {
-    const [items, setItems] = useState([]);
-+   const [state, withState] = usePendingState("fetch-items");
+  export let ItemList = () => {
+    let [items, setItems] = useState([]);
++   let [state, withState] = usePendingState("fetch-items");
 
     useEffect(() => {
 -     fetchItems().then(setItems);
@@ -34,8 +45,8 @@ Objective: Track the pending state of the async `fetchItems()` action to tell th
 ```diff
 + import { usePendingState } from "@t8/react-pending";
 
-  export const Status = () => {
-+   const [state] = usePendingState("fetch-items");
+  export let Status = () => {
++   let [state] = usePendingState("fetch-items");
 
     if (!state.initialized) return "";
     if (!state.complete) return "Busy";
@@ -47,15 +58,15 @@ Objective: Track the pending state of the async `fetchItems()` action to tell th
 
 [Live demo](https://codesandbox.io/p/sandbox/rrr9cl?file=%2Fsrc%2FItemList.tsx)
 
-🔹 In this example, the action's value (the `items` array) is stored in the component's local state, but it can be stored in any app state of the developer's choice.
+🔹 In this example, the value returned from the async action, the `items` array, is stored in the component's local state, but it can be stored in any app state of the developer's choice without affecting how `usePendingState()` is used.
 
-## Shared and local pending state
+## Local pending state
 
 Omit the custom string key parameter of `usePendingState()` to scope the pending state locally within a single component:
 
 ```diff
-- const [state, withState] = usePendingState("fetch-items"); // shared
-+ const [state, withState] = usePendingState(); // local
+- let [state, withState] = usePendingState("fetch-items"); // shared
++ let [state, withState] = usePendingState(); // local
 ```
 
 ## Silent tracking of background and optimistic updates
@@ -101,7 +112,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 ## Providing custom initial pending state
 
 ```diff
-+ const initialState = {
++ let initialState = {
 +   "fetch-items": { initialized: true, complete: true },
 + };
 
