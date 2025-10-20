@@ -58,7 +58,9 @@ Objective: Track the pending state of the asynchronous action `fetchItems()` to 
 
 [Live demo](https://codesandbox.io/p/sandbox/rrr9cl?file=%2Fsrc%2FItemList.tsx)
 
-🔹 In this example, the value returned from the async action, the `items` array, is stored in the component's local state, but it can be stored in any app state of the developer's choice without affecting how `usePendingState()` is used.
+🔹 To share the async action's pending state with multiple components we're using the string key parameter of `usePendingState(stateKey)`. This key can be used with `usePendingState(stateKey)` in other components to refer to the same pending state (as in the `Status` component above), so `stateKey` should be unique to the particular pending state.
+
+🔹 In the example above, the data returned from the async action is stored in the component's local state, but it can be stored in any app state of the developer's choice without affecting how the `usePendingState()` hook is used.
 
 ## Local pending state
 
