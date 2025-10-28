@@ -98,7 +98,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 
 🔹 This option allows the async action to reject explicitly, along with exposing `state.error` that goes by default.
 
-## Providing blank initial pending state
+## Providing blank initial pending&nbsp;state
 
 ```diff
 + import { PendingStateProvider } from "@t8/react-pending";
@@ -111,7 +111,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 
 🔹 `<PendingStateProvider>` creates an isolated instance of initial shared action state. Prime use cases: tests, SSR. It isn't required with client-side rendering, but it can be used to separate action states of larger self-contained portions of a web app.
 
-## Providing custom initial pending state
+## Providing custom initial pending&nbsp;state
 
 ```diff
 + let initialState = {
