@@ -1,7 +1,7 @@
 import { isStore, type SetStoreState, Store, useStore } from "@t8/react-store";
 import { useCallback, useContext, useMemo, useRef, useState } from "react";
-import type { PendingState } from "./PendingState";
-import { PendingStateContext } from "./PendingStateContext";
+import type { PendingState } from "./PendingState.ts";
+import { PendingStateContext } from "./PendingStateContext.ts";
 
 function createState(
   initialized = false,

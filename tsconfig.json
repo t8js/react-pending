@@ -1,10 +1,13 @@
 {
-  "include": ["index.ts", "playwright.config.ts", "src", "tests"],
+  "include": ["./index.ts", "./playwright.config.ts", "./src", "./tests"],
   "compilerOptions": {
+    "noEmit": true,
     "lib": ["ESNext", "DOM"],
-    "target": "ESNext",
+    "target": "esnext",
     "outDir": "dist",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
     "strict": true,
     "noUnusedLocals": true,

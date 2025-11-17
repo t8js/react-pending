@@ -1,4 +1,4 @@
-import { usePendingState } from "../../..";
+import { usePendingState } from "../../../index.ts";
 
 export const Status = () => {
   const [state] = usePendingState("fetch-items");

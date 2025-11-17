@@ -1,6 +1,6 @@
 import { type CSSProperties, useCallback, useEffect, useState } from "react";
-import { usePendingState } from "../../..";
-import { fetchItems, type Item } from "./fetchItems";
+import { usePendingState } from "../../../index.ts";
+import { fetchItems, type Item } from "./fetchItems.ts";
 
 export const ItemList = () => {
   const [items, setItems] = useState<Item[]>([]);

@@ -1,7 +1,7 @@
 import { Store } from "@t8/react-store";
 import { type ReactNode, useMemo, useRef } from "react";
-import type { PendingState } from "./PendingState";
-import { PendingStateContext } from "./PendingStateContext";
+import type { PendingState } from "./PendingState.ts";
+import { PendingStateContext } from "./PendingStateContext.ts";
 
 export type PendingStateProviderProps = {
   value?:
