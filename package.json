@@ -3,9 +3,10 @@
   "version": "1.0.22",
   "description": "Concise async action state tracking for React apps",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "npx npm-run-all clean compile",
+    "build": "npx npm-run-all clean compile types",
     "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
     "compile": "npx esbuild index.ts --bundle --outdir=dist --platform=neutral --external:react",
     "demo": "npx @t8/serve 3000 * tests/async_status -b src/index.tsx",
@@ -13,7 +14,8 @@
     "preversion": "npx npm-run-all typecheck shape build test",
     "shape": "npx codeshape",
     "test": "npx playwright test --project=chromium",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "types": "tsc -p tsconfig.build.json"
   },
   "author": "axtk",
   "license": "MIT",
@@ -32,7 +34,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
-    "@t8/serve": "^0.1.34",
+    "@t8/serve": "^0.1.35",
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.9",
@@ -40,6 +42,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@t8/react-store": "^1.0.33"
+    "@t8/react-store": "^1.0.34"
   }
 }
