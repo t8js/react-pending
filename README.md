@@ -1,12 +1,10 @@
-[![npm](https://flat.badgen.net/npm/v/@t8/react-pending?labelColor=345&color=46e)](https://www.npmjs.com/package/@t8/react-pending) [![Lightweight](https://flat.badgen.net/bundlephobia/minzip/@t8/react-pending/?label=minzip&labelColor=345&color=46e)](https://bundlephobia.com/package/@t8/react-pending) ![TypeScript ✓](https://flat.badgen.net/badge/TypeScript/✓?labelColor=345&color=345) ![CSR ✓](https://flat.badgen.net/badge/CSR/✓?labelColor=345&color=345) ![SSR ✓](https://flat.badgen.net/badge/SSR/✓?labelColor=345&color=345)
-
-# @t8/react-pending
+# T8 React Pending
 
 *Concise async action state tracking for React apps*
 
-- Shared or local pending state tracking
-- Without rewrites in the app's shared state or async actions' internals
-- With a concise API
+[![npm](https://img.shields.io/npm/v/@t8/react-pending?labelColor=345&color=46e)](https://www.npmjs.com/package/@t8/react-pending) ![Lightweight](https://img.shields.io/bundlephobia/minzip/@t8/react-pending?label=minzip&labelColor=345&color=46e) ![CSR ✓](https://img.shields.io/badge/CSR-✓-345?labelColor=345) ![SSR ✓](https://img.shields.io/badge/SSR-✓-345?labelColor=345)
+
+Shared or local pending state tracking with a concise API without rewrites in the app's shared state or async actions' internals.
 
 ```diff
 + let [state, withState] = usePendingState("fetch-items");
