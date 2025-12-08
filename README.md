@@ -31,7 +31,9 @@ Installation: `npm i @t8/react-pending`
 
 ## Shared pending state
 
-Objective: Track the pending state of the asynchronous action `fetchItems()` to tell the user whether the UI is busy or encountered an error (preferably without rewriting the action and the app's state management). In our setup, there are two components rendering their content with regard to the current state of `fetchItems()`.
+Objective: Track the pending state of the asynchronous action `fetchItems()` to tell the user whether the UI is busy handling the async action or encountered an error, without rewriting the action and the app's state management.
+
+In our setup, there are two components rendering their content with regard to the current state of `fetchItems()`, so the pending state is shared between these components:
 
 ```diff
 + import { usePendingState } from "@t8/react-pending";
