@@ -6,14 +6,26 @@
 
 Shared or local pending state tracking with a concise API without rewrites in the app's shared state or async actions' internals.
 
+<!-- docsgen-show-start --
 ```diff
-+ let [state, withState] = usePendingState("fetch-items");
++ import { usePendingState } from "@t8/react-pending";
 
-- fetchItems().then(setItems);
-+ withState(fetchItems()).then(setItems);
+  export let ItemList = () => {
+    let [items, setItems] = useState([]);
++   let [state, withState] = usePendingState("fetch-items");
 
-+ if (!state.complete) return <p>Loading...</p>;
+    useEffect(() => {
+-     fetchItems().then(setItems);
++     withState(fetchItems()).then(setItems);
+    }, [fetchItems, withState]);
+
++   if (!state.complete) return <p>Loading...</p>;
++   if (state.error) return <p>An error occurred</p>;
+
+    return <ul>{items.map(/* ... */)}</ul>;
+  };
 ```
+-- docsgen-show-end -->
 
 Installation: `npm i @t8/react-pending`
 
