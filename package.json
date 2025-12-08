@@ -34,14 +34,14 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
-    "@t8/serve": "^0.1.35",
-    "@types/node": "^24.5.2",
-    "@types/react": "^19.1.10",
+    "@t8/serve": "^0.1.36",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.1.9",
-    "react-dom": "^19.1.1",
+    "react-dom": "^19.2.1",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@t8/react-store": "^1.0.35"
+    "@t8/react-store": "^1.2.3"
   }
 }
