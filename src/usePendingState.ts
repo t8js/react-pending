@@ -17,26 +17,43 @@ function createState(
 }
 
 export type WithStateOptions = {
+  /**
+   * Whether to track the action state silently (e.g. with a background
+   * action or an optimistic update).
+   * 
+   * When set to `true`, the state's `complete` property doesn't switch
+   * to `false` in the pending state.
+   */
   silent?: boolean;
-  throws?: boolean;
+  /**
+   * Delays switching the action state's `complete` property to `false`
+   * in the pending state by the given number of milliseconds.
+   * 
+   * Use case: to avoid flashing a process indicator if the action is
+   * likely to complete by the end of a short delay.
+   */
   delay?: number;
+  /**
+   * Allows the async action to reject explicitly, along with exposing
+   * the action state's `error` property that goes by default.
+   */
+  throws?: boolean;
 };
 
 /**
- * Returns an array containing `[state, withState, setState]`:
- * - `state` reflects the state of a value passed to `withState()`;
- * - `withState(value, [options])` enables the tracking of the state
- * of `value`; setting the options to `{silent: true}` prevents
- * `withState()` from updating the state while `value` is pending
- * (e.g. for background or optimistic updates);
- * - `setState()` to directly update the state.
+ * Returns an instance of pending state and the functions to update it.
+ * 
+ * @param store - A unique store key or a store. Providing a store
+ * key or a shared store allows to share the state across multiple
+ * components.
+ * 
+ * @returns `[state, withState, setState]`, where
+ * - `state` is the current value of the pending state;
+ * - `withState(action, options?)` reads and tracks the pending state
+ * of `action`;
+ * - `setState(update)` can update the pending state value directly.
  */
 export function usePendingState(
-  /**
-   * A unique store key or a store. Providing a store key or a
-   * shared store allows to share the state across multiple
-   * components.
-   */
   store?: string | Store<PendingState> | null,
 ): [PendingState, <T>(value: T) => T, SetStoreState<PendingState>] {
   let storeMap = useContext(PendingStateContext);
