@@ -41,17 +41,18 @@ export type WithStateOptions = {
 };
 
 /**
- * Returns an instance of pending state and the functions to update it.
+ * Returns an instance of an action's state and the functions to update it.
  *
  * @param store - A unique store key or a store. Providing a store
  * key or a shared store allows to share the state across multiple
  * components.
  *
  * @returns `[state, withState, setState]`, where
- * - `state` is the current value of the pending state;
- * - `withState(action, options?)` reads and tracks the pending state
- * of `action`;
- * - `setState(update)` can update the pending state value directly.
+ * - `state` is the current value of the action's state;
+ * - `withState(action, options?)` reads and tracks the `actions`'s state
+ * which is exposed as `state` listed above;
+ * - `setState(update)` can replace the current `state` value directly with
+ * an another state value.
  */
 export function usePendingState(
   store?: string | Store<PendingState> | null,
