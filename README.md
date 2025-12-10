@@ -83,7 +83,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 + let [state, withState] = usePendingState(); // local
 ```
 
-## Silent tracking of background and optimistic updates
+## Silent tracking of background actions and optimistic updates
 
 ```diff
 - withState(fetchItems())
@@ -96,7 +96,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 
 ```diff
 - withState(fetchItems())
-+ withState(fetchItems(), { delay: 500 })
++ withState(fetchItems(), { delay: 500 }) // in milliseconds
 ```
 
 🔹 Use case: avoiding flashing a process indicator when the action is likely to complete by the end of a short delay.
@@ -121,7 +121,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 + </PendingStateProvider>
 ```
 
-🔹 `<PendingStateProvider>` creates an isolated instance of initial shared action state. Prime use cases: tests, SSR. It isn't required with client-side rendering, but it can be used to separate action states of larger self-contained portions of a web app.
+🔹 `<PendingStateProvider>` creates an isolated instance of initial shared action state. Prime use cases are SSR and tests. It isn't required with client-side rendering, but it can be used to separate action states of larger self-contained portions of a web app.
 
 ## Providing custom initial pending&nbsp;state
 
