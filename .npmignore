@@ -1,7 +1,5 @@
-dist
 tests
 playwright.config.ts
-*.test.ts
 
 # Playwright
 /test-results/
