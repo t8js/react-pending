@@ -1,4 +1,4 @@
-import { isStore, type SetStoreState, Store, useStore } from "@t8/react-store";
+import { isStore, type SetStoreValue, Store, useStore } from "@t8/react-store";
 import { useCallback, useContext, useMemo, useRef, useState } from "react";
 import type { PendingState } from "./PendingState.ts";
 import { PendingStateContext } from "./PendingStateContext.ts";
@@ -51,12 +51,12 @@ export type WithStateOptions = {
  * - `state` is the current value of the action's state;
  * - `withState(action, options?)` reads and tracks the `actions`'s state
  * which is exposed as `state` listed above;
- * - `setState(update)` can replace the current `state` value directly with
- * an another state value.
+ * - `setState(update)` can be used to replace the current `state` value
+ * directly with an another state value.
  */
 export function usePendingState(
   store?: string | Store<PendingState> | null,
-): [PendingState, <T>(value: T) => T, SetStoreState<PendingState>] {
+): [PendingState, <T>(value: T) => T, SetStoreValue<PendingState>] {
   let storeMap = useContext(PendingStateContext);
   let storeRef = useRef<Store<PendingState> | null>(null);
   let [storeItemInited, setStoreItemInited] = useState(false);
