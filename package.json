@@ -29,13 +29,13 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
-    "@t8/serve": "^0.1.38",
+    "@t8/serve": "^0.1.39",
     "@types/node": "^24.10.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.3"
   },
   "dependencies": {
-    "@t8/react-store": "^1.2.6"
+    "@t8/react-store": "^1.2.7"
   }
 }
