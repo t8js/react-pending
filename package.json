@@ -1,7 +1,7 @@
 {
   "name": "@t8/react-pending",
   "version": "1.0.30",
-  "description": "Concise async action state tracking for React apps",
+  "description": "A concise async action state management lib for React apps",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

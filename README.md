@@ -1,6 +1,6 @@
 # T8 React Pending
 
-*Concise async action state tracking for React apps*
+A concise async action state management lib for React apps
 
 [![npm](https://img.shields.io/npm/v/@t8/react-pending?labelColor=345&color=46e)](https://www.npmjs.com/package/@t8/react-pending) ![Lightweight](https://img.shields.io/bundlephobia/minzip/@t8/react-pending?label=minzip&labelColor=345&color=46e) ![CSR ✓](https://img.shields.io/badge/CSR-✓-345?labelColor=345) ![SSR ✓](https://img.shields.io/badge/SSR-✓-345?labelColor=345)
 
@@ -70,9 +70,9 @@ In our setup, there are two components rendering their content with regard to th
 
 [Live demo](https://codesandbox.io/p/sandbox/rrr9cl?file=%2Fsrc%2FItemList.tsx)
 
-🔹 To share the async action's pending state with multiple components we're using the string key parameter of `usePendingState(stateKey)`. This key can be used with `usePendingState(stateKey)` in other components to refer to the same pending state (as in the `Status` component above), so `stateKey` should be unique to the particular pending state.
+⬥ To share the async action's pending state with multiple components we're using the string key parameter of `usePendingState(stateKey)`. This key can be used with `usePendingState(stateKey)` in other components to refer to the same pending state (as in the `Status` component above), so `stateKey` should be unique to the particular pending state.
 
-🔹 In the example above, the data returned from the async action is stored in the component's local state, but it can be stored in any app state of the developer's choice without affecting how the `usePendingState()` hook is used.
+⬥ In the example above, the data returned from the async action is stored in the component's local state, but it can be stored in any app state of the developer's choice without affecting how the `usePendingState()` hook is used.
 
 ## Local pending state
 
@@ -90,7 +90,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 + withState(fetchItems(), { silent: true })
 ```
 
-🔹 This option prevents `state.complete` from switching to `false` in the pending state.
+⬥ This option prevents `state.complete` from switching to `false` in the pending state.
 
 ## Delayed pending state
 
@@ -99,7 +99,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 + withState(fetchItems(), { delay: 500 }) // in milliseconds
 ```
 
-🔹 Use case: avoiding flashing a process indicator when the action is likely to complete by the end of a short delay.
+⬥ Use case: avoiding flashing a process indicator when the action is likely to complete by the end of a short delay.
 
 ## Custom rejection handler
 
@@ -108,7 +108,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 + withState(fetchItems(), { throws: true }).catch(handleError)
 ```
 
-🔹 This option allows the async action to reject explicitly, along with exposing `state.error` that goes by default.
+⬥ This option allows the async action to reject explicitly, along with exposing `state.error` that goes by default.
 
 ## Providing blank initial pending&nbsp;state
 
@@ -121,7 +121,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 + </PendingStateProvider>
 ```
 
-🔹 `<PendingStateProvider>` creates an isolated instance of initial shared action state. Prime use cases are SSR and tests. It isn't required with client-side rendering, but it can be used to separate action states of larger self-contained portions of a web app.
+⬥ `<PendingStateProvider>` creates an isolated instance of initial shared action state. Its prime use cases are SSR and tests. It isn't required with client-side rendering, but it can be used to separate action states of larger self-contained portions of an app.
 
 ## Providing custom initial pending&nbsp;state
 
@@ -136,6 +136,6 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
   </PendingStateProvider>
 ```
 
-🔹 While fully optional, this setup allows to override the initial state received from `usePendingState(stateKey)`.
+⬥ While fully optional, this setup allows to redefine the initial state received from `usePendingState(stateKey)`.
 
-🔹 With an explicit value or without, the `<PendingStateProvider>`'s nested components will only respond to updates in the particular action states they subscribed to by means of `usePendingState(stateKey)`.
+⬥ With an explicit value or without, the `<PendingStateProvider>`'s nested components will only respond to updates in the particular action states they subscribed to by means of `usePendingState(stateKey)`.
