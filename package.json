@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "demo": "npx @t8/serve 3000 * tests/async_status -b src/index.tsx",
+    "demo": "npx @t8/serve tests/async_status --spa -b src/index.tsx",
     "preversion": "npx npm-run-all shape test",
     "shape": "npx codeshape",
     "test": "npx playwright test --project=chromium"
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
-    "@t8/serve": "^0.1.39",
+    "@t8/serve": "^0.2.0",
     "@types/node": "^24.10.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
