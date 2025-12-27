@@ -60,11 +60,11 @@ In our setup, there are two components rendering their content with regard to th
   export let Status = () => {
 +   let [state] = usePendingState("fetch-items");
 
-    if (!state.initialized) return "";
-    if (!state.complete) return "Busy";
-    if (state.error) return "Error";
+    if (!state.initialized) return null;
+    if (!state.complete) return <>Busy</>;
+    if (state.error) return <>Error</>;
 
-    return "OK";
+    return <>OK</>;
   };
 ```
 
