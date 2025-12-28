@@ -37,6 +37,6 @@
     "react-dom": "^19.2.3"
   },
   "dependencies": {
-    "@t8/react-store": "^1.2.7"
+    "@t8/react-store": "^1.2.8"
   }
 }
