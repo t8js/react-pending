@@ -1,10 +1,10 @@
 # T8 React Pending
 
-A concise async action state management lib for React apps
+Self-contained async action state management for React apps
 
-[![npm](https://img.shields.io/npm/v/@t8/react-pending?labelColor=345&color=46e)](https://www.npmjs.com/package/@t8/react-pending) ![Lightweight](https://img.shields.io/bundlephobia/minzip/@t8/react-pending?label=minzip&labelColor=345&color=46e) ![CSR ✓](https://img.shields.io/badge/CSR-✓-345?labelColor=345) ![SSR ✓](https://img.shields.io/badge/SSR-✓-345?labelColor=345)
+[![npm](https://img.shields.io/npm/v/@t8/react-pending?labelColor=345&color=46e)](https://www.npmjs.com/package/@t8/react-pending) ![Lightweight](https://img.shields.io/bundlephobia/minzip/@t8/react-pending?label=minzip&labelColor=345&color=46e)
 
-**Why?** To manage the async action state, whether local or shared, without tightly coupling it with the app state. Decoupled pending state as described here acts like a lightweight scaffolding on top of the action's and component's successful scenario. It's easy to set up from scratch without rewriting the async actions and affecting the app state, and easy to manage further on since it's barely intertwined with other app's internals.
+**Features:** Decoupled from app state management and async actions' internals&nbsp;&middot; Local or shared async action state&nbsp;&middot; CSR/SSR-compatible
 
 <!-- docsgen-show-start --
 ```diff

@@ -1,7 +1,7 @@
 {
   "name": "@t8/react-pending",
   "version": "1.0.32",
-  "description": "A concise async action state management lib for React apps",
+  "description": "Self-contained async action state management for React apps",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -22,6 +22,7 @@
   "keywords": [
     "async actions",
     "pending state",
+    "async state",
     "react"
   ],
   "peerDependencies": {
