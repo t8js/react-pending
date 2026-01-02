@@ -55,7 +55,10 @@ export type TrackOptions = {
  */
 export function usePendingState(
   store?: string | Store<PendingState> | null,
-): PendingState & { track: <T>(value: T) => T; update: SetStoreValue<PendingState> } {
+): PendingState & {
+  track: <T>(value: T) => T;
+  update: SetStoreValue<PendingState>;
+} {
   let storeMap = useContext(PendingStateContext);
   let storeRef = useRef<Store<PendingState> | null>(null);
   let [storeItemInited, setStoreItemInited] = useState(false);
