@@ -25,7 +25,7 @@ let server: Server;
 
 test.beforeAll(async () => {
   server = await serve({
-    path: "tests/async_status",
+    path: "tests/async_state",
     bundle: "src/index.tsx",
     spa: true,
   });
@@ -35,7 +35,7 @@ test.afterAll(() => {
   server.close();
 });
 
-test("async status", async ({ page }) => {
+test("async state", async ({ page }) => {
   let p = new Playground(page);
 
   await page.goto("/");
