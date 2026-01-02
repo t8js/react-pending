@@ -143,9 +143,12 @@ export function usePendingState(
     [setState],
   );
 
-  return useMemo(() => ({
-    ...state,
-    track,
-    update: setState,
-  }), [state, track, setState]);
+  return useMemo(
+    () => ({
+      ...state,
+      track,
+      update: setState,
+    }),
+    [state, track, setState],
+  );
 }
