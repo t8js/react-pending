@@ -27,13 +27,18 @@ export const ItemList = () => {
     );
 
   return (
-    <ul>
-      {items.map(({ id, text, color }) => (
-        <li key={id} style={{ "--color": color } as CSSProperties}>
-          <span className="badge" />
-          {text}
-        </li>
-      ))}
-    </ul>
+    <>
+      <p>
+        <button onClick={loadItems}>Reload items</button>
+      </p>
+      <ul>
+        {items.map(({ id, text, color }) => (
+          <li key={id} style={{ "--color": color } as CSSProperties}>
+            <span className="badge" />
+            {text}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };

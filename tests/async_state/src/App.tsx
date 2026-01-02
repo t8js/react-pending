@@ -4,12 +4,12 @@ import { Status } from "./Status.tsx";
 export const App = () => {
   return (
     <>
-      <p>Available items:</p>
-      <ItemList />
-      <hr />
       <p>
         Status: <Status />
       </p>
+      <hr />
+      <p>Available items:</p>
+      <ItemList />
     </>
   );
 };

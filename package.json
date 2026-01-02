@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "demo": "npx @t8/serve tests/async_status --spa -b src/index.tsx",
+    "demo": "npx @t8/serve tests/async_state --spa -b src/index.tsx",
     "preversion": "npx npm-run-all shape test",
     "shape": "npx codeshape",
     "test": "npx playwright test --project=chromium"
