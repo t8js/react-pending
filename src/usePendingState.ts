@@ -143,9 +143,9 @@ export function usePendingState(
     [setState],
   );
 
-  return {
+  return useMemo(() => ({
     ...state,
     track,
     update: setState,
-  };
+  }), [state, track, setState]);
 }
