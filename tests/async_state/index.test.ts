@@ -6,6 +6,9 @@ class Playground {
   constructor(page: Page) {
     this.page = page;
   }
+  async reloadItems() {
+    await this.page.getByRole("button", { name: "Reload items" }).click();
+  }
   async showsLoadingStatus() {
     await expect(
       this.page.locator("p", { hasText: "Loading..." }),
@@ -39,6 +42,12 @@ test("async state", async ({ page }) => {
   let p = new Playground(page);
 
   await page.goto("/");
+  await p.showsLoadingStatus();
+  await p.showsStatus("⏳ Busy");
+  await p.showsItemList();
+  await p.showsStatus("✔️ OK");
+
+  await p.reloadItems();
   await p.showsLoadingStatus();
   await p.showsStatus("⏳ Busy");
   await p.showsItemList();
