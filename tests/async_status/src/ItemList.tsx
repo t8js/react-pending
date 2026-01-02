@@ -4,19 +4,19 @@ import { fetchItems, type Item } from "./fetchItems.ts";
 
 export const ItemList = () => {
   const [items, setItems] = useState<Item[]>([]);
-  const [state, withState] = usePendingState("fetch-items");
+  const { complete, error, track } = usePendingState("fetch-items");
 
   const loadItems = useCallback(() => {
-    withState(fetchItems()).then(setItems);
-  }, [withState]);
+    track(fetchItems()).then(setItems);
+  }, [track]);
 
   useEffect(() => {
     loadItems();
   }, [loadItems]);
 
-  if (!state.complete) return <p>Loading...</p>;
+  if (!complete) return <p>Loading...</p>;
 
-  if (state.error)
+  if (error)
     return (
       <div className="error">
         <p>Failed to load items</p>

@@ -12,15 +12,15 @@ Self-contained async action state management for React apps
 
   export let ItemList = () => {
     let [items, setItems] = useState([]);
-+   let [state, withState] = usePendingState("fetch-items");
++   let { complete, error, track } = usePendingState("fetch-items");
 
     useEffect(() => {
 -     fetchItems().then(setItems);
-+     withState(fetchItems()).then(setItems);
-    }, [fetchItems, withState]);
++     track(fetchItems()).then(setItems);
+    }, [fetchItems, track]);
 
-+   if (!state.complete) return <p>Loading...</p>;
-+   if (state.error) return <p>An error occurred</p>;
++   if (!complete) return <p>Loading...</p>;
++   if (error) return <p>An error occurred</p>;
 
     return <ul>{items.map(/* ... */)}</ul>;
   };
@@ -40,15 +40,15 @@ In our setup, there are two components rendering their content with regard to th
 
   export let ItemList = () => {
     let [items, setItems] = useState([]);
-+   let [state, withState] = usePendingState("fetch-items");
++   let { complete, error, track } = usePendingState("fetch-items");
 
     useEffect(() => {
 -     fetchItems().then(setItems);
-+     withState(fetchItems()).then(setItems);
-    }, [fetchItems, withState]);
++     track(fetchItems()).then(setItems);
+    }, [fetchItems, track]);
 
-+   if (!state.complete) return <p>Loading...</p>;
-+   if (state.error) return <p>An error occurred</p>;
++   if (!complete) return <p>Loading...</p>;
++   if (error) return <p>An error occurred</p>;
 
     return <ul>{items.map(/* ... */)}</ul>;
   };
@@ -58,11 +58,11 @@ In our setup, there are two components rendering their content with regard to th
 + import { usePendingState } from "@t8/react-pending";
 
   export let Status = () => {
-+   let [state] = usePendingState("fetch-items");
++   let { initialized, complete, error } = usePendingState("fetch-items");
 
-    if (!state.initialized) return null;
-    if (!state.complete) return <>Busy</>;
-    if (state.error) return <>Error</>;
+    if (!initialized) return null;
+    if (!complete) return <>Busy</>;
+    if (error) return <>Error</>;
 
     return <>OK</>;
   };
@@ -79,24 +79,24 @@ In our setup, there are two components rendering their content with regard to th
 Omit the custom string key parameter of `usePendingState()` to scope the pending state locally within a single component:
 
 ```diff
-- let [state, withState] = usePendingState("fetch-items"); // shared
-+ let [state, withState] = usePendingState(); // local
+- let { complete } = usePendingState("fetch-items"); // shared
++ let { complete } = usePendingState(); // local
 ```
 
 ## Silent tracking of background actions and optimistic updates
 
 ```diff
-- withState(fetchItems())
-+ withState(fetchItems(), { silent: true })
+- track(fetchItems())
++ track(fetchItems(), { silent: true })
 ```
 
-⬥ This option prevents `state.complete` from switching to `false` in the pending state.
+⬥ This option prevents `complete` from switching to `false` in the pending state.
 
 ## Delayed pending state
 
 ```diff
-- withState(fetchItems())
-+ withState(fetchItems(), { delay: 500 }) // in milliseconds
+- track(fetchItems())
++ track(fetchItems(), { delay: 500 }) // in milliseconds
 ```
 
 ⬥ Use case: avoiding flashing a process indicator when the action is likely to complete by the end of a short delay.
@@ -104,11 +104,11 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 ## Custom rejection handler
 
 ```diff
-- withState(fetchItems())
-+ withState(fetchItems(), { throws: true }).catch(handleError)
+- track(fetchItems())
++ track(fetchItems(), { throws: true }).catch(handleError)
 ```
 
-⬥ This option allows the async action to reject explicitly, along with exposing `state.error` that goes by default.
+⬥ This option allows the async action to reject explicitly, along with exposing `error` returned from `usePendingState()` that goes by default.
 
 ## Providing blank initial pending&nbsp;state
 

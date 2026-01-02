@@ -1,13 +1,13 @@
 import { usePendingState } from "../../../index.ts";
 
 export const Status = () => {
-  const [state] = usePendingState("fetch-items");
+  const { complete, error } = usePendingState("fetch-items");
 
-  // if (!state.initialized) return "⚪ Initial";
+  // if (!initialized) return <>⚪ Initial</>;
 
-  if (!state.complete) return "⏳ Busy";
+  if (!complete) return <>⏳ Busy</>;
 
-  if (state.error) return "❌ Error";
+  if (error) return <>❌ Error</>;
 
-  return "✔️ OK";
+  return <>✔️ OK</>;
 };

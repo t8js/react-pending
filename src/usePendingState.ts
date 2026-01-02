@@ -16,7 +16,7 @@ function createState(
   };
 }
 
-export type WithStateOptions = {
+export type TrackOptions = {
   /**
    * Whether to track the action state silently (e.g. with a background
    * action or an optimistic update).
@@ -47,16 +47,15 @@ export type WithStateOptions = {
  * key or a shared store allows to share the state across multiple
  * components.
  *
- * @returns `[state, withState, setState]`, where
- * - `state` is the current value of the action's state;
- * - `withState(action, options?)` reads and tracks the `actions`'s state
- * which is exposed as `state` listed above;
- * - `setState(update)` can be used to replace the current `state` value
- * directly with an another state value.
+ * @returns `{ initialized, complete, error, track, update }`, where
+ * - `initialized`, `complete`, `error` reflect the current action's state;
+ * - `track(action, options?)` tracks the `actions`'s state;
+ * - `update(nextState | ((state) => nextState))` can be used to replace
+ * the current `state` value directly with an another state value.
  */
 export function usePendingState(
   store?: string | Store<PendingState> | null,
-): [PendingState, <T>(value: T) => T, SetStoreValue<PendingState>] {
+): PendingState & { track: <T>(value: T) => T; update: SetStoreValue<PendingState> } {
   let storeMap = useContext(PendingStateContext);
   let storeRef = useRef<Store<PendingState> | null>(null);
   let [storeItemInited, setStoreItemInited] = useState(false);
@@ -84,8 +83,8 @@ export function usePendingState(
 
   let [state, setState] = useStore(resolvedStore);
 
-  let withState = useCallback(
-    <T>(value: T, options?: WithStateOptions): T => {
+  let track = useCallback(
+    <T>(value: T, options?: TrackOptions): T => {
       if (value instanceof Promise) {
         let delayedPending: ReturnType<typeof setTimeout> | null = null;
 
@@ -141,5 +140,9 @@ export function usePendingState(
     [setState],
   );
 
-  return [state, withState, setState];
+  return {
+    ...state,
+    track,
+    update: setState,
+  };
 }
