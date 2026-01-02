@@ -1,6 +1,6 @@
 {
   "name": "@t8/react-pending",
-  "version": "1.0.33",
+  "version": "1.1.0",
   "description": "Self-contained async action state management for React apps",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
