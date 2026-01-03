@@ -90,7 +90,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 + track(fetchItems(), { silent: true })
 ```
 
-⬥ This option prevents the `pending` property from switching to `false` in the pending state.
+⬥ This option prevents the `pending` property from switching to `true` in the pending state.
 
 ## Delayed pending state
 
