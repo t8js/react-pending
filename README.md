@@ -12,7 +12,7 @@ Self-contained async action state management for React apps
 
   export let ItemList = () => {
     let [items, setItems] = useState([]);
-+   let { initial, pending, error, track } = usePendingState("fetch-items");
++   let { initial, pending, error, track } = usePendingState();
 
     useEffect(() => {
 -     fetchItems().then(setItems);
