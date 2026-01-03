@@ -2,11 +2,11 @@ import { type CSSProperties, useCallback, useEffect, useState } from "react";
 import { usePendingState } from "../../../index.ts";
 import { fetchItems, type Item } from "./fetchItems.ts";
 
-export const ItemList = () => {
-  const [items, setItems] = useState<Item[]>([]);
-  const { complete, error, track } = usePendingState("fetch-items");
+export let ItemList = () => {
+  let [items, setItems] = useState<Item[]>([]);
+  let { initial, pending, error, track } = usePendingState("fetch-items");
 
-  const loadItems = useCallback(() => {
+  let loadItems = useCallback(() => {
     track(fetchItems()).then(setItems);
   }, [track]);
 
@@ -14,7 +14,7 @@ export const ItemList = () => {
     loadItems();
   }, [loadItems]);
 
-  if (!complete) return <p>Loading...</p>;
+  if (initial || pending) return <p>Loading...</p>;
 
   if (error)
     return (

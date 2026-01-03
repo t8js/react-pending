@@ -1,6 +1,6 @@
 export type PendingState = {
-  initialized?: boolean | undefined;
-  complete?: boolean | undefined;
-  time?: number | undefined;
+  initial?: boolean | undefined;
+  pending?: boolean | undefined;
   error?: unknown;
+  time?: number | undefined;
 };

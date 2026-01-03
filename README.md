@@ -12,14 +12,14 @@ Self-contained async action state management for React apps
 
   export let ItemList = () => {
     let [items, setItems] = useState([]);
-+   let { complete, error, track } = usePendingState("fetch-items");
++   let { initial, pending, error, track } = usePendingState("fetch-items");
 
     useEffect(() => {
 -     fetchItems().then(setItems);
 +     track(fetchItems()).then(setItems);
     }, [fetchItems, track]);
 
-+   if (!complete) return <p>Loading...</p>;
++   if (initial || pending) return <p>Loading...</p>;
 +   if (error) return <p>An error occurred</p>;
 
     return <ul>{items.map(/* ... */)}</ul>;
@@ -40,14 +40,14 @@ In our setup, there are two components rendering their content with regard to th
 
   export let ItemList = () => {
     let [items, setItems] = useState([]);
-+   let { complete, error, track } = usePendingState("fetch-items");
++   let { initial, pending, error, track } = usePendingState("fetch-items");
 
     useEffect(() => {
 -     fetchItems().then(setItems);
 +     track(fetchItems()).then(setItems);
     }, [fetchItems, track]);
 
-+   if (!complete) return <p>Loading...</p>;
++   if (initial || pending) return <p>Loading...</p>;
 +   if (error) return <p>An error occurred</p>;
 
     return <ul>{items.map(/* ... */)}</ul>;
@@ -58,10 +58,10 @@ In our setup, there are two components rendering their content with regard to th
 + import { usePendingState } from "@t8/react-pending";
 
   export let Status = () => {
-+   let { initialized, complete, error } = usePendingState("fetch-items");
++   let { initial, pending, error } = usePendingState("fetch-items");
 
-    if (!initialized) return null;
-    if (!complete) return <>Busy</>;
+    if (initial) return null;
+    if (pending) return <>Busy</>;
     if (error) return <>Error</>;
 
     return <>OK</>;
@@ -79,8 +79,8 @@ In our setup, there are two components rendering their content with regard to th
 Omit the custom string key parameter of `usePendingState()` to scope the pending state locally within a single component:
 
 ```diff
-- let { complete } = usePendingState("fetch-items"); // shared
-+ let { complete } = usePendingState(); // local
+- let { initial, pending, error } = usePendingState("fetch-items"); // shared
++ let { initial, pending, error } = usePendingState(); // local
 ```
 
 ## Silent tracking of background actions and optimistic updates
@@ -90,7 +90,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 + track(fetchItems(), { silent: true })
 ```
 
-⬥ This option prevents `complete` from switching to `false` in the pending state.
+⬥ This option prevents the `pending` property from switching to `false` in the pending state.
 
 ## Delayed pending state
 
@@ -127,7 +127,7 @@ Omit the custom string key parameter of `usePendingState()` to scope the pending
 
 ```diff
 + let initialState = {
-+   "fetch-items": { initialized: true, complete: true },
++   "fetch-items": { initial: false, pending: true },
 + };
 
 - <PendingStateProvider>

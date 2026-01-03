@@ -1,11 +1,11 @@
 import { usePendingState } from "../../../index.ts";
 
-export const Status = () => {
-  const { complete, error } = usePendingState("fetch-items");
+export let Status = () => {
+  let { initial, pending, error } = usePendingState("fetch-items");
 
-  // if (!initialized) return <>⚪ Initial</>;
+  // if (initial) return <>⚪ Initial</>;
 
-  if (!complete) return <>⏳ Busy</>;
+  if (initial || pending) return <>⏳ Busy</>;
 
   if (error) return <>❌ Error</>;
 
